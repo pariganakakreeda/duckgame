@@ -1,0 +1,2 @@
+conda activate /home/hamnah/anaconda/gameenv/
+python test.py
