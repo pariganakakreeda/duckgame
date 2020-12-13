@@ -9,6 +9,8 @@ land_bg = pygame.image.load('Land_BG.png')
 cloud1 = pygame.image.load('Cloud1.png')
 cloud2 = pygame.image.load('Cloud2.png')
 water_bg = pygame.image.load('Water_BG.png')
+land_position_y = 560
+land_speed = 1
 
 while True:
     for event in pygame.event.get():
@@ -18,7 +20,11 @@ while True:
 
 
     screen.blit(wood_bg,(0,0))
-    screen.blit(land_bg,(0,560))
+    land_position_y -= land_speed
+    if land_position_y <= 520 or land_position_y >= 600:
+        land_speed *= -1
+
+    screen.blit(land_bg,(0,land_position_y))
     screen.blit(cloud1,(10,10))
     screen.blit(cloud2,(300,10))
     screen.blit(cloud1,(500,20))
