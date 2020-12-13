@@ -11,7 +11,8 @@ cloud2 = pygame.image.load('Cloud2.png')
 water_bg = pygame.image.load('Water_BG.png')
 land_position_y = 560
 land_speed = 1
-
+water_position_y = 640
+water_speed = 1.5
 while True:
     for event in pygame.event.get():
       if event.type == pygame.QUIT:
@@ -23,13 +24,18 @@ while True:
     land_position_y -= land_speed
     if land_position_y <= 520 or land_position_y >= 600:
         land_speed *= -1
-
     screen.blit(land_bg,(0,land_position_y))
+
+    water_position_y -= water_speed
+    if water_position_y <= 620 or water_position_y >= 680:
+        water_speed *= -1
+    screen.blit(water_bg,(0,water_position_y))
+
+
     screen.blit(cloud1,(10,10))
     screen.blit(cloud2,(300,10))
     screen.blit(cloud1,(500,20))
     screen.blit(cloud2,(700,40))
     screen.blit(cloud1,(1000,60))
-    screen.blit(water_bg,(0,600))
     pygame.display.update()
     clock.tick(120)
