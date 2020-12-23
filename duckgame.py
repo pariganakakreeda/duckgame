@@ -4,6 +4,7 @@ pygame.init()
 screen = pygame.display.set_mode((1280,720))
 clock = pygame.time.Clock()
 
+
 wood_bg = pygame.image.load('Wood_BG.png')
 land_bg = pygame.image.load('Land_BG.png')
 cloud1 = pygame.image.load('Cloud1.png')
@@ -12,6 +13,10 @@ water_bg = pygame.image.load('Water_BG.png')
 crosshair = pygame.image.load('crosshair.png')
 crosshair_rect=(0,0)
 duck_surface = pygame.image.load('duck.png')
+
+game_font = pygame.font.Font(None,60)
+text_surface = game_font.render('YOU WON!',True,(0,240,170))
+text_rect = text_surface.get_rect(center = (640,360))
 
 land_position_y = 560
 land_speed = 1
@@ -42,6 +47,8 @@ while True:
     screen.blit(wood_bg,(0,0))
     for duck_rect in duck_list:
         screen.blit(duck_surface,duck_rect)
+    if len(duck_list) <= 0:
+       screen.blit(text_surface,text_rect)
 
 
     land_position_y -= land_speed
@@ -60,6 +67,8 @@ while True:
     screen.blit(cloud2,(300,10))
     screen.blit(cloud1,(500,20))
     screen.blit(cloud2,(700,40))
-    screen.blit(cloud1,(1000,60))
+    screen.blit(cloud1,(1000,90))
+
+    #screen.blit(text_surface,(300,300))
     pygame.display.update()
     clock.tick(120)
