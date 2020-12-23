@@ -3,7 +3,7 @@ import pygame, sys, random
 pygame.init()
 screen = pygame.display.set_mode((1280,720))
 clock = pygame.time.Clock()
-
+pygame.mouse.set_visible(False)
 
 wood_bg = pygame.image.load('Wood_BG.png')
 land_bg = pygame.image.load('Land_BG.png')
@@ -40,7 +40,7 @@ while True:
         crosshair_rect = crosshair.get_rect(center = event.pos)
       if event.type == pygame.MOUSEBUTTONDOWN:
          for index,duck_rect in enumerate(duck_list):
-           if crosshair_rect.colliderect(duck_rect):
+           if duck_rect.collidepoint(event.pos):                                         #crosshair_rect.colliderect(duck_rect):
               #print(index)
               del duck_list[index]
 
