@@ -17,6 +17,7 @@ duck_surface = pygame.image.load('duck.png')
 game_font = pygame.font.Font(None,60)
 text_surface = game_font.render('YOU WON!',True,(0,240,170))
 text_rect = text_surface.get_rect(center = (640,360))
+score=0
 
 land_position_y = 560
 land_speed = 1
@@ -40,9 +41,12 @@ while True:
         crosshair_rect = crosshair.get_rect(center = event.pos)
       if event.type == pygame.MOUSEBUTTONDOWN:
          for index,duck_rect in enumerate(duck_list):
-           if duck_rect.collidepoint(event.pos):                                         #crosshair_rect.colliderect(duck_rect):
+           if duck_rect.collidepoint(event.pos): 
+              #crosshair_rect.colliderect(duck_rect):
               #print(index)
               del duck_list[index]
+              score = score + 1
+
 
     screen.blit(wood_bg,(0,0))
     for duck_rect in duck_list:
@@ -50,6 +54,9 @@ while True:
     if len(duck_list) <= 0:
        screen.blit(text_surface,text_rect)
 
+    score_surface = game_font.render(str(score),True,(255,255,255))
+    score_rect = text_surface.get_rect(center = (340,100))
+    screen.blit(score_surface,score_rect)
 
     land_position_y -= land_speed
     if land_position_y <= 520 or land_position_y >= 600:
